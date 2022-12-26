@@ -1,10 +1,13 @@
 import pygame
 import sys
+from os.path import abspath, dirname
 
 from moviepy.editor import VideoFileClip
 
+import sprites.player
 from levels import levels
 from functions.terminate import terminate
+from functions.generate_levels import generate_level
 from functions.load_level import load_level
 from buttons.menu_button import MenuButton
 from buttons.question_button import QuestionButton
@@ -51,8 +54,9 @@ while levels.menu:
 
 # ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 while True:
-    px, py = load_level(f"all_levels/lvl{lvl_number}/level{lvl_number}.txt")
-    player = Player(f"all_levels/lvl{lvl_number}/player.png", px, py, w, h, spritres_groups.all_sprites)
+    player = generate_level(
+        load_level(f"{dirname(abspath(__file__))}/all_levels/lvl{lvl_number}/level{lvl_number}.txt"), lvl_number,
+        dirname(abspath(__file__)))
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

@@ -4,19 +4,19 @@ from sprites import block, door, player, road
 from sprites.all_sprites_groups.spritres_groups import all_sprites, doors, roads, blocks
 
 
-def generate_level(level, level_number):
+def generate_level(level, level_number, folder_path):
     new_player, x, y = None, None, None
     px, py = 0, 0
     for y in range(len(level)):
         for x in range(len(level[y])):
             if level[y][x] == '.':
-                road.Road(load_image(f'./all_levels/lvl{level_number}/road.png'), x, y, roads, all_sprites)
+                road.Road(load_image(f'{folder_path}/all_levels/lvl{level_number}/road.png'), x, y, roads, all_sprites)
             elif level[y][x] == 'x':
-                block.Block(load_image(f'./all_levels/lvl{level_number}/block.png'), x, y, blocks, all_sprites)
+                block.Block(load_image(f'{folder_path}/all_levels/lvl{level_number}/block.png'), x, y, blocks, all_sprites)
             elif level[y][x] == 'd':
-                door.Door(load_image("./door.png"), x, y, doors, all_sprites)
+                door.Door(load_image(f"{folder_path}/door.png"), x, y, doors, all_sprites)
             elif level[y][x] == '@':
                 px, py = x, y
 
-    new_player = player.Player(load_image(f'./all_levels/lv l{level_number}/player.png'), px, py, all_sprites)
-    return new_player, x, y
+    new_player = player.Player(load_image(f'{folder_path}/all_levels/lvl{level_number}/player.png'), px, py, all_sprites)
+    return new_player
