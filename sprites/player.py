@@ -1,5 +1,6 @@
 import pygame
 
+from settings import TILE_WIDTH, TILE_HEIGHT
 from sprites.all_sprites_groups import spritres_groups
 
 
@@ -10,8 +11,8 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.w = 1280
         self.h = 720
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.x = x * TILE_WIDTH
+        self.rect.y = y * TILE_HEIGHT
 
     def update(self, *args):
         if args:

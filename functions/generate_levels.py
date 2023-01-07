@@ -14,8 +14,10 @@ def generate_level(level, level_number):
             elif level[y][x] == 'x':
                 block.Block(load_image(f'lvl{level_number}/block.png'), x, y, blocks, all_sprites)
             elif level[y][x] == 'd':
-                door.Door(load_image("./door.png"), x, y, doors, all_sprites)
+                road.Road(load_image(f'lvl{level_number}/road.png'), x, y, roads, all_sprites)
+                door.Door(load_image("door.png"), x, y, doors, all_sprites)
             elif level[y][x] == '@':
+                road.Road(load_image(f'lvl{level_number}/road.png'), x, y, roads, all_sprites)
                 px, py = x, y
 
     new_player = player.Player(load_image(f'lvl{level_number}/player.png'), px, py, all_sprites)
