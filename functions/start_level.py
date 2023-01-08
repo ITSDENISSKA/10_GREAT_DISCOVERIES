@@ -69,14 +69,14 @@ def start_level(screen, click, lvl_number):
             if true_btn.clicked:
                 levels.question = False
                 click.play()
-                levels.running = False
+                return True
+
             if false1_btn.clicked:
                 levels.question = False
-                levels.level1 = True
-                break
+                return False
+
             if false2_btn.clicked:
                 levels.question = False
-                levels.level1 = True
-                break
+                return False
 
             pygame.display.update()

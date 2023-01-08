@@ -50,8 +50,9 @@ while levels.menu:
 
 # ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 while lvl_number <= 10:
-    start_level(screen, click, lvl_number)
-    lvl_number += 1
+    level = start_level(screen, click, lvl_number)
+    if level:
+        lvl_number += 1
     levels.running = True
 
 
