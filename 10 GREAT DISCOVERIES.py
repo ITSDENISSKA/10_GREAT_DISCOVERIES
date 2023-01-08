@@ -7,16 +7,14 @@ from settings import *
 from levels import levels
 from functions.start_level import start_level
 from functions.terminate import terminate
-from functions.load_level import load_level
-from functions.generate_levels import generate_level
 from buttons.menu_button import MenuButton
-from buttons.question_button import QuestionButton
-from sprites.all_sprites_groups import spritres_groups
+from database import DataBase
 
 pygame.mixer.pre_init(*MUSIC_SETTINGS)
 
 pygame.init()
-
+database = DataBase("database.sqlite")
+database.create_database()
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('10 GREAT DISCOVERIES')
@@ -51,8 +49,10 @@ while levels.menu:
 
 
 # ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-while True:
-    start_level(screen, click)
+while lvl_number <= 10:
+    start_level(screen, click, lvl_number)
+    lvl_number += 1
+    levels.running = True
 
 
 terminate()

@@ -10,10 +10,11 @@ from levels import levels
 from sprites.all_sprites_groups import spritres_groups
 
 
-def start_level(screen, click):
-    player, px, py = generate_level(load_level(f"data/lvl{levels.lvl_number}/level{levels.lvl_number}.txt"), 1)
+def start_level(screen, click, lvl_number):
+    player, px, py = generate_level(load_level(f"data/lvl{lvl_number}/level{lvl_number}.txt"), lvl_number)
 
     while levels.running:
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -55,7 +56,7 @@ def start_level(screen, click):
                             pygame.mixer.music.pause()
                         else:
                             pygame.mixer.music.unpause()
-            menu_background = pygame.image.load(f"backgrounds/question{levels.lvl_number}.png")
+            menu_background = pygame.image.load(f"backgrounds/question{lvl_number}.png")
             screen.blit(menu_background, (0, 0))
 
             true_btn = QuestionButton(382, 120, (255, 140, 0), (255, 215, 0), screen, True)
@@ -67,7 +68,6 @@ def start_level(screen, click):
             question = true_btn.answer
             if true_btn.clicked:
                 levels.question = False
-                levels.lvl_number += 1
                 click.play()
                 levels.running = False
             if false1_btn.clicked:
