@@ -1,4 +1,4 @@
-# 10_GREAT_DISCOVERIES
+# 10 GREAT DISCOVERIES
 Игра на pygame для Лицея Академии Яндекса
 
 Описание:
