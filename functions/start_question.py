@@ -3,14 +3,12 @@ import pygame
 from buttons.question_button import QuestionButton
 from functions.terminate import terminate
 from levels import levels
-from settings import CLICK_SOUND
 
 
-def start_question(screen, lvl_number):
+def start_question(screen, lvl_number, CLICK_SOUND):
     while levels.question:
+        print(1)
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                terminate()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     flPause = not levels.flPause
@@ -18,6 +16,8 @@ def start_question(screen, lvl_number):
                         pygame.mixer.music.pause()
                     else:
                         pygame.mixer.music.unpause()
+            if event.type == pygame.QUIT:
+                terminate()
         menu_background = pygame.image.load(f"backgrounds/question{lvl_number}.png")
         screen.blit(menu_background, (0, 0))
 

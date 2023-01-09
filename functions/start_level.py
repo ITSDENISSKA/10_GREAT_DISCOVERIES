@@ -13,8 +13,7 @@ from sprites.all_sprites_groups import spritres_groups
 def start_level(screen, lvl_number):
     player, px, py = generate_level(load_level(f"data/lvl{lvl_number}/level{lvl_number}.txt"), lvl_number)
 
-    while levels.running:
-
+    while levels.level:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 terminate()
@@ -38,7 +37,7 @@ def start_level(screen, lvl_number):
             spritres_groups.doors.remove(spritres_groups.doors)
             spritres_groups.blocks.remove(spritres_groups.blocks)
             spritres_groups.roads.remove(spritres_groups.roads)
-            levels.level1 = False
+            levels.level = False
             levels.question = True
         spritres_groups.all_sprites.draw(screen)
         pygame.display.update()
