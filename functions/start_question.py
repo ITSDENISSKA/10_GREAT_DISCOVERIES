@@ -7,7 +7,6 @@ from levels import levels
 
 def start_question(screen, lvl_number, CLICK_SOUND):
     while levels.question:
-        print(1)
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
