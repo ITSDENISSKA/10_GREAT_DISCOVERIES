@@ -16,8 +16,6 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('10 GREAT DISCOVERIES')
 CLICK_SOUND = pygame.mixer.Sound("sounds/button.wav")
 
-lvl_number = 1
-
 start_menu(screen)
 
 while lvl_number <= 10:

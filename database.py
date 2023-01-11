@@ -9,15 +9,15 @@ class DataBase:
     # Создание таблиц базы данных.
     def create_database(self) -> sqlite3.OperationalError:
         try:
-            self.cursor.execute("""CREATE TABLE IF NOT EXISTS users (
-            user_id INTEGER PRIMARY KEY 
-                AUTOINCREMENT 
-                NOT NULL 
-                UNIQUE,
-            nickname STRING UNIQUE NOT NULL,
-            score INTEGER NOT NULL,
-            time INTEGER NOT NULL,
-            );""")
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS users (\n"
+                                "            user_id INTEGER PRIMARY KEY \n"
+                                "                AUTOINCREMENT \n"
+                                "                NOT NULL \n"
+                                "                UNIQUE,\n"
+                                "            nickname STRING UNIQUE NOT NULL,\n"
+                                "            score INTEGER NOT NULL,\n"
+                                "            time INTEGER NOT NULL,\n"
+                                "            );")
 
         except sqlite3.Error as error:
             return error

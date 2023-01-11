@@ -1,6 +1,6 @@
-import pygame
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
+lvl_number = 1
 WIDTH = 1280
 HEIGHT = 720
 TILE_HEIGHT = 40
