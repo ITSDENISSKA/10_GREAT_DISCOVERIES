@@ -1,11 +1,13 @@
 import pygame
 
+from database import DataBase
 from buttons.menu_button import MenuButton
 from functions.terminate import terminate
 from levels import levels
 
 
 def start_menu(screen):
+    database = DataBase("database.sqlite")
     font = pygame.font.Font(None, 50)
     input_box = pygame.Rect(475, 190, 330, 40)
     color_inactive = pygame.Color('#A719A3')
@@ -49,3 +51,4 @@ def start_menu(screen):
 
         levels.menu = not start_btn.clicked
         pygame.display.update()
+    database.add_nickname(text)
