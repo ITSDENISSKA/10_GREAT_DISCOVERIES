@@ -16,6 +16,8 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('10 GREAT DISCOVERIES')
 CLICK_SOUND = pygame.mixer.Sound("sounds/button.wav")
 
+clock = pygame.time.Clock()
+
 start_menu(screen)
 
 while lvl_number <= 10:
@@ -24,5 +26,5 @@ while lvl_number <= 10:
     if answer:
         lvl_number += 1
     levels.level = True
-
+    clock.tick(FPS)
 terminate()
