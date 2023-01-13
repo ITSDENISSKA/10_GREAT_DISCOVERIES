@@ -1,4 +1,4 @@
-from buttons.button import Button
+from widgets.button import Button
 
 
 class MenuButton(Button):

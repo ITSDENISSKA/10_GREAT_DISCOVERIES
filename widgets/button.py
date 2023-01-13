@@ -9,7 +9,6 @@ class Button:
         self.active_color = active_color
         self.screen = screen
         self.clicked = False
-        self.question = False
 
     def draw(self, x, y, message, font_size):
         mouse = pygame.mouse.get_pos()

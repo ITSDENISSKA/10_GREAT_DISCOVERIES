@@ -2,7 +2,7 @@ import sys
 
 import pygame
 
-from buttons.question_button import QuestionButton
+from widgets.question_button import QuestionButton
 from functions.generate_levels import generate_level
 from functions.load_level import load_level
 from functions.terminate import terminate

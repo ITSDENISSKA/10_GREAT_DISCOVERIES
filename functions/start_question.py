@@ -1,6 +1,6 @@
 import pygame
 
-from buttons.question_button import QuestionButton
+from widgets.question_button import QuestionButton
 from functions.terminate import terminate
 from levels import levels
 
