@@ -10,7 +10,7 @@ from levels import levels
 from sprites.all_sprites_groups import spritres_groups
 
 
-def start_level(screen, lvl_number):
+def start_level(screen, lvl_number, timer):
     player, px, py = generate_level(load_level(f"data/lvl{lvl_number}/level{lvl_number}.txt"), lvl_number)
 
     while levels.level:
@@ -39,5 +39,12 @@ def start_level(screen, lvl_number):
             spritres_groups.roads.remove(spritres_groups.roads)
             levels.level = False
             levels.question = True
+
+
         spritres_groups.all_sprites.draw(screen)
+
+        font_type = pygame.font.Font("Font/Text.ttf", 20)
+        msg = font_type.render(str(timer.get_time()), True, (0, 0, 0))
+        screen.blit(msg, (1200, 10))
+
         pygame.display.update()

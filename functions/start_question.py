@@ -2,11 +2,11 @@ import pygame
 
 from widgets.question_button import QuestionButton
 from functions.terminate import terminate
-from buttons_text import text
+from helpers.settings import QUESSTION_BUTTONS_TEXT
 from levels import levels
 
 
-def start_question(screen, lvl_number, CLICK_SOUND):
+def start_question(screen, lvl_number, click_sound, timer):
     while levels.question:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -24,12 +24,12 @@ def start_question(screen, lvl_number, CLICK_SOUND):
         true_btn = QuestionButton(382, 120, (255, 140, 0), (255, 215, 0), screen, True)
         false1_btn = QuestionButton(360, 120, (255, 140, 0), (255, 215, 0), screen, False)
         false2_btn = QuestionButton(350, 120, (255, 140, 0), (255, 215, 0), screen, False)
-        true_btn.draw(455, 268, text[f"level{lvl_number}"][0], 90)
-        false1_btn.draw(95, 450, text[f"level{lvl_number}"][1], 90)
-        false2_btn.draw(840, 450, text[f"level{lvl_number}"][2], 90)
+        true_btn.draw(455, 268, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][0], 90)
+        false1_btn.draw(95, 450, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][1], 90)
+        false2_btn.draw(840, 450, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][2], 90)
         if true_btn.clicked:
             levels.question = False
-            CLICK_SOUND.play()
+            click_sound.play()
             return True
 
         if false1_btn.clicked:
@@ -40,4 +40,7 @@ def start_question(screen, lvl_number, CLICK_SOUND):
             levels.question = False
             return False
 
+        font_type = pygame.font.Font("Font/Text.ttf", 20)
+        msg = font_type.render(str(timer.get_time()), True, (0, 0, 0))
+        screen.blit(msg, (1200, 10))
         pygame.display.update()

@@ -1,6 +1,6 @@
 import pygame
 
-from settings import TILE_WIDTH, TILE_HEIGHT
+from helpers.settings import TILE_WIDTH, TILE_HEIGHT
 
 
 class Block(pygame.sprite.Sprite):
