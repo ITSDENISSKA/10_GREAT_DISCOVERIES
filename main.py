@@ -20,6 +20,7 @@ clock = pygame.time.Clock()
 
 start_menu(screen)
 
+
 while lvl_number <= 10:
     start_level(screen, lvl_number)
     answer = start_question(screen, lvl_number, CLICK_SOUND)
