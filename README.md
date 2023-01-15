@@ -17,3 +17,7 @@
 - Реализовать подсчет статистики игрока,
 - Реализовать БД, ее структуру и хранение данных в БД,
 - Реализовать финальное окно.
+
+Пояснительная записка: https://docs.google.com/document/d/15jXrOovcd4uYJUXDwkJNlbkJZJOCcm9FJdqmVGp2yf8/edit?usp=sharing
+
+Презентация: https://docs.google.com/presentation/d/1ibjsENPgBJEAOYyiWZSskiC-j4mJkEIkP2K96lJpbyo/edit?usp=sharing
