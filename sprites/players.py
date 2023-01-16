@@ -4,7 +4,7 @@ from helpers.settings import *
 from sprites.all_sprites_groups import spritres_groups
 
 
-class PlayerForMaze(pygame.sprite.Sprite):
+class Player(pygame.sprite.Sprite):
     def __init__(self, image, x, y, all_sprites):
         super().__init__(all_sprites)
         self.right = True
@@ -17,6 +17,24 @@ class PlayerForMaze(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x * TILE_WIDTH
         self.rect.y = y * TILE_HEIGHT
+
+    def cut_sheet(self, sheet, columns, rows):
+        self.rect = pygame.Rect(0, 0, sheet.get_width() // columns,
+                                sheet.get_height() // rows)
+        for j in range(rows):
+            for i in range(columns):
+                # p_size
+                frame_location = (40 * i, 40 * j)
+                self.frames.append(sheet.subsurface(pygame.Rect(
+                    frame_location, (39, 40))))
+
+    def flip(self):
+        self.image = pygame.transform.flip(self.image, True, False)
+
+
+class PlayerForMaze(Player):
+    def __init__(self, image, x, y, all_sprites):
+        super().__init__(image, x, y, all_sprites)
 
     def update(self, *args):
         if args:
@@ -56,45 +74,12 @@ class PlayerForMaze(pygame.sprite.Sprite):
                 if args[1][3]:
                     self.rect.x -= 1
 
-    def cut_sheet(self, sheet, columns, rows):
-        self.rect = pygame.Rect(0, 0, sheet.get_width() // columns,
-                                sheet.get_height() // rows)
-        for j in range(rows):
-            for i in range(columns):
-                # p_size
-                frame_location = (40 * i, 40 * j)
-                self.frames.append(sheet.subsurface(pygame.Rect(
-                    frame_location, (39, 40))))
 
-    def flip(self):
-        self.image = pygame.transform.flip(self.image, True, False)
-
-
-class PlayerForPlatformer(pygame.sprite.Sprite):
+class PlayerForPlatformer(Player):
     def __init__(self, image, x, y, all_sprites):
-        super().__init__(all_sprites)
-        self.right = True
-        columns = 8
-        rows = 1
-        self.frames = []
-        self.cut_sheet(image, columns, rows)
-        self.cur_frame = 0
-        self.image = self.frames[self.cur_frame]
-        self.rect = self.image.get_rect()
-        self.rect.x = x * TILE_WIDTH
-        self.rect.y = y * TILE_HEIGHT
-        self.change_x = 0
+        super().__init__(image, x, y, all_sprites)
         self.change_y = 0
-
-    def cut_sheet(self, sheet, columns, rows):
-        self.rect = pygame.Rect(0, 0, sheet.get_width() // columns,
-                                sheet.get_height() // rows)
-        for j in range(rows):
-            for i in range(columns):
-                # p_size
-                frame_location = (40 * i, 40 * j)
-                self.frames.append(sheet.subsurface(pygame.Rect(
-                    frame_location, (39, 40))))
+        self.change_x = 0
 
     def update(self, *args):
         if args:
@@ -153,7 +138,3 @@ class PlayerForPlatformer(pygame.sprite.Sprite):
 
     def stop(self):
         self.change_x = 0
-
-    def flip(self):
-        self.image = pygame.transform.flip(self.image, True, False)
-
