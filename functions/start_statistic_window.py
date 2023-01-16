@@ -26,12 +26,12 @@ def start_statistic_window(screen):
 
         statistic = database.get_statistic()
         if type(statistic) is list:
-            screen.blit(font_type.render("МЕСТО:", True, BLACK), (0, 0))
+            screen.blit(font_type.render("МЕСТО:", True, BLACK), (10, 0))
             screen.blit(font_type.render("НИКНЕЙМ:", True, BLACK), (130, 0))
             screen.blit(font_type.render("ВРЕМЯ ПРОХОЖДЕНИЯ:", True, BLACK), (480, 0))
             screen.blit(font_type.render("КОЛЛИЧЕСТВО ПОПЫТОК:", True, BLACK), (880, 0))
             for number, player in enumerate(statistic):
-                screen.blit(font_type.render(str(number + 1), True, BLACK), (0, 40 * (number + 1)))
+                screen.blit(font_type.render(str(number + 1), True, BLACK), (10, 40 * (number + 1)))
                 screen.blit(font_type.render(str(player[0]), True, BLACK), (130, 40 * (number + 1)))
                 if player[3]:
                     time = f"{int(player[1]) // 60:02}:{int(player[1]) % 60:02}"

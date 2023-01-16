@@ -44,6 +44,8 @@ def start_menu(screen, timer):
         if statistic_btn.clicked:
             settings.statistic_window = True
             start_statistic_window(screen)
+            statistic_btn = MenuButton(200, 50, (13, 162, 58), (23, 204, 50), screen)
+
 
         settings.menu = not start_btn.clicked
         pygame.display.update()

@@ -45,11 +45,6 @@ def start_maze_level(screen, lvl_number, timer):
                     player.update(pygame.K_a, (0, 0, 1, 0))
                 if event.key == pygame.K_d:
                     player.update(pygame.K_d, (0, 0, 0, 1))
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_a and player.change_x < 0:
-                    player.stop()
-                if event.key == pygame.K_d and player.change_x > 0:
-                    player.stop()
         if pygame.sprite.spritecollideany(player, spritres_groups.doors):
             remove_all_sprites_groups()
 
