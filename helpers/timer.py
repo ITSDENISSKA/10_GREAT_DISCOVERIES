@@ -1,5 +1,8 @@
 import time
 
+import pygame
+from helpers.settings import FONT
+
 
 class Timer:
     def __init__(self):
@@ -15,3 +18,9 @@ class Timer:
         end_time = time.perf_counter() - self.start_time
         self.start_time = None
         return end_time
+
+    def draw(self, screen, x, y, font_size):
+        font_type = pygame.font.Font(FONT, font_size)
+        text = font_type.render(f"Текущее время прохождения: {int(self.get_time()) // 60:02}:"
+                                f"{int(self.get_time()) % 60:02}", True, (0, 0, 0))
+        screen.blit(text, (x, y))

@@ -1,18 +1,23 @@
 import pygame
 
+from database import DataBase
+from functions.draw_attempts_count import draw_attempts_count
 from widgets.question_button import QuestionButton
 from functions.terminate import terminate
-from helpers.settings import QUESSTION_BUTTONS_TEXT
-from levels import levels
+from helpers.settings import QUESSTION_BUTTONS_TEXT, FONT
+from helpers import settings
 
 
 def start_question(screen, lvl_number, click_sound, timer):
-    while levels.question:
+    database = DataBase("database.sqlite")
+    database.update_time_by_nickname(settings.players_name, timer.get_time())
+
+    while settings.question:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    flPause = not levels.flPause
-                    if flPause:
+                    settings.music_playing = not settings.music_playing
+                    if settings.music_playing:
                         pygame.mixer.music.pause()
                     else:
                         pygame.mixer.music.unpause()
@@ -21,26 +26,23 @@ def start_question(screen, lvl_number, click_sound, timer):
         menu_background = pygame.image.load(f"backgrounds/question{lvl_number}.png")
         screen.blit(menu_background, (0, 0))
 
-        true_btn = QuestionButton(382, 120, (255, 140, 0), (255, 215, 0), screen, True)
-        false1_btn = QuestionButton(360, 120, (255, 140, 0), (255, 215, 0), screen, False)
-        false2_btn = QuestionButton(350, 120, (255, 140, 0), (255, 215, 0), screen, False)
-        true_btn.draw(455, 268, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][0], 90)
-        false1_btn.draw(95, 450, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][1], 90)
-        false2_btn.draw(840, 450, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][2], 90)
+        true_btn = QuestionButton(400, 120, (255, 140, 0), (255, 215, 0), screen, True)
+        false1_btn = QuestionButton(400, 120, (255, 140, 0), (255, 215, 0), screen, False)
+        false2_btn = QuestionButton(400, 120, (255, 140, 0), (255, 215, 0), screen, False)
+        true_btn.draw(440, 280, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][0], 90)
+        false1_btn.draw(100, 450, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][1], 90)
+        false2_btn.draw(780, 450, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][2], 90)
         if true_btn.clicked:
-            levels.question = False
+            settings.question = False
             click_sound.play()
             return True
-
-        if false1_btn.clicked:
-            levels.question = False
+        elif false2_btn.clicked or false1_btn.clicked:
+            settings.question = False
+            settings.count_of_incorrect_answers += 1
+            database.increment_count_of_incorrect_answers_by_nickname(settings.players_name)
             return False
 
-        if false2_btn.clicked:
-            levels.question = False
-            return False
+        draw_attempts_count(screen, 0, 40)
+        timer.draw(screen, 640, 0, 40)
 
-        font_type = pygame.font.Font("Font/Text.ttf", 20)
-        msg = font_type.render(str(timer.get_time()), True, (0, 0, 0))
-        screen.blit(msg, (1200, 10))
         pygame.display.update()

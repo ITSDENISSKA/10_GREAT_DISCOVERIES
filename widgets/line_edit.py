@@ -1,5 +1,7 @@
 import pygame
 
+from helpers.settings import FONT
+
 
 class LineEdit:
     def __init__(self, width, height, inactive_color, active_color, screen):
@@ -19,7 +21,7 @@ class LineEdit:
         self.x = x
         self.y = y
 
-        font_type = pygame.font.Font("Font/Text.ttf", font_size)
+        font_type = pygame.font.Font(FONT, font_size)
         text = font_type.render(self.text, True, (0, 0, 0))
         font = pygame.font.Font(None, 50)
 
