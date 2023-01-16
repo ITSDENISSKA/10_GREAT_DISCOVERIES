@@ -12,6 +12,7 @@ class PlayerForMaze(pygame.sprite.Sprite):
         self.rect.x = x * TILE_WIDTH
         self.rect.y = y * TILE_HEIGHT
 
+
     def update(self, *args):
         if args:
             if args[0] == pygame.K_w and self.rect.y > 0:
@@ -43,6 +44,15 @@ class PlayerForPlatformer(pygame.sprite.Sprite):
         self.rect.y = y * TILE_HEIGHT
         self.change_x = 0
         self.change_y = 0
+
+    def cut_sheet(self, sheet, columns, rows):
+        self.rect = pygame.Rect(0, 0, sheet.get_width() // columns,
+                                sheet.get_height() // rows)
+        for j in range(rows):
+            for i in range(columns):
+                frame_location = (self.rect.w * i, self.rect.h * j)
+                self.frames.append(sheet.subsurface(pygame.Rect(
+                    frame_location, self.rect.size)))
 
     def update(self, *args):
         if args:
