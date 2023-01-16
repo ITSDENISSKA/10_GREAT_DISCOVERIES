@@ -31,6 +31,8 @@ def start_menu(screen, timer):
                         pygame.mixer.music.pause()
                     else:
                         pygame.mixer.music.unpause()
+                if event.key == pygame.K_ESCAPE:
+                    terminate()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 line_edit.update_state(event.pos)
 

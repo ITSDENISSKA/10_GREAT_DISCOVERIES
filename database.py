@@ -68,7 +68,7 @@ class DataBase:
     def get_statistic(self):
         try:
             statistic = self.cursor.execute(
-                "SELECT nickname, time, count_of_incorrect_answers, passed FROM users").fetchall()
+                "SELECT nickname, time, count_of_incorrect_answers, passed FROM users ORDER BY time ASC").fetchall()
             return statistic
         except sqlite3.Error as error:
             return error
