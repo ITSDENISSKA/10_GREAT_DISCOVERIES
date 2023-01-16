@@ -56,14 +56,12 @@ class DataBase:
         except sqlite3.Error as error:
             return error
 
-
     def update_time_by_nickname(self, nickname, time):
         try:
             self.cursor.execute("UPDATE users SET time = ? WHERE nickname = ?", (time, nickname))
             self.connection.commit()
         except sqlite3.Error as error:
             return error
-
 
     def get_statistic(self):
         try:
@@ -72,7 +70,6 @@ class DataBase:
             return statistic
         except sqlite3.Error as error:
             return error
-
 
     def get_count_of_incorrect_answers_by_nickname(self, nickname):
         try:
@@ -83,7 +80,6 @@ class DataBase:
         except sqlite3.Error as error:
             return error
 
-
     def set_passed_game_by_nickname(self, nickname):
         try:
             self.cursor.execute("UPDATE users SET passed = 1 WHERE nickname = ?", (nickname,))
@@ -91,7 +87,16 @@ class DataBase:
         except sqlite3.Error as error:
             return error
 
-
     def get_time_by_nickname(self, nickname):
-        time = self.cursor.execute("SELECT time FROM users WHERE nickname = ?", (nickname,)).fetchone()
-        return time[0]
+        try:
+            time = self.cursor.execute("SELECT time FROM users WHERE nickname = ?", (nickname,)).fetchone()
+            return time[0]
+
+        except sqlite3.Error as error:
+            return error
+
+    def close(self):
+        try:
+            self.connection.close()
+        except sqlite3.Error as error:
+            return error

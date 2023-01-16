@@ -37,6 +37,9 @@ def start_maze_level(screen, lvl_number, timer):
                         pygame.mixer.music.pause()
                     else:
                         pygame.mixer.music.unpause()
+                if event.key == pygame.K_ESCAPE:
+                    database.close()
+                    terminate()
                 if event.key == pygame.K_w:
                     player.update(pygame.K_w, (1, 0, 0, 0))
                 if event.key == pygame.K_s:

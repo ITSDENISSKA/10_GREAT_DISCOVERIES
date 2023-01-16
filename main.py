@@ -37,4 +37,5 @@ while lvl_number <= 10:
     clock.tick(FPS)
 database.set_passed_game_by_nickname(settings.players_name)
 
+database.close()
 terminate()

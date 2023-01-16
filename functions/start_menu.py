@@ -32,6 +32,7 @@ def start_menu(screen, timer):
                     else:
                         pygame.mixer.music.unpause()
                 if event.key == pygame.K_ESCAPE:
+                    database.close()
                     terminate()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 line_edit.update_state(event.pos)
@@ -48,13 +49,12 @@ def start_menu(screen, timer):
             start_statistic_window(screen)
             statistic_btn = MenuButton(200, 50, (13, 162, 58), (23, 204, 50), screen)
 
-
-        settings.menu = not start_btn.clicked
         pygame.display.update()
 
-    settings.players_name = line_edit.get_text()
-    database.add_nickname(line_edit.get_text())
-    timer.start()
-    timer.start_time = database.get_time_by_nickname(settings.players_name)
-    settings.count_of_incorrect_answers = database.get_count_of_incorrect_answers_by_nickname(settings.players_name)
-    settings.level = True
+        if len(line_edit.get_text()) >= 3:
+            settings.menu = not start_btn.clicked
+            settings.players_name = line_edit.get_text()
+            database.add_nickname(line_edit.get_text())
+            timer.start()
+            settings.count_of_incorrect_answers = database.get_count_of_incorrect_answers_by_nickname(settings.players_name)
+            settings.level = True
