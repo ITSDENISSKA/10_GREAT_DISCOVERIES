@@ -3,7 +3,6 @@ import sys
 import pygame
 
 from database import DataBase
-from widgets.question_button import QuestionButton
 from functions.generate_levels import generate_maze_level, generate_platformer_level
 from functions.load_level import load_level
 from functions.terminate import terminate
@@ -13,12 +12,15 @@ from sprites.all_sprites_groups import spritres_groups
 
 
 def remove_all_sprites_groups():
-    spritres_groups.all_sprites.remove(spritres_groups.all_sprites)
-    spritres_groups.doors.remove(spritres_groups.doors)
-    spritres_groups.blocks.remove(spritres_groups.blocks)
-    spritres_groups.roads.remove(spritres_groups.roads)
-    settings.level = False
-    settings.question = True
+    try:
+        spritres_groups.all_sprites.remove(spritres_groups.all_sprites)
+        spritres_groups.doors.remove(spritres_groups.doors)
+        spritres_groups.blocks.remove(spritres_groups.blocks)
+        spritres_groups.roads.remove(spritres_groups.roads)
+        settings.level = False
+        settings.question = True
+    except Exception as error:
+        return error
 
 
 def start_maze_level(screen, lvl_number, timer):

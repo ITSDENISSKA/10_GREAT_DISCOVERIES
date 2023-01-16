@@ -33,3 +33,11 @@ class Button:
         text = font_type.render(message, True, FONT_COLOR)
         self.screen.blit(text, (x, y))
 
+class MenuButton(Button):
+    def __init__(self, width, height, inactive_color, active_color, screen):
+        super().__init__(width, height, inactive_color, active_color, screen)
+
+class QuestionButton(Button):
+    def __init__(self, width, height, inactive_color, active_color, screen, answer):
+        super().__init__(width, height, inactive_color, active_color, screen)
+        self.answer = answer

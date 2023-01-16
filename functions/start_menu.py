@@ -5,7 +5,7 @@ from functions.start_statistic_window import start_statistic_window
 from helpers.settings import MENU_BUTTON_INACTIVE_COLOR, MENU_BUTTON_ACTIVE_COLOR, LINE_EDIT_INACTIVE_COLOR, \
     LINE_EDIT_ACTIVE_COLOR
 from widgets.line_edit import LineEdit
-from widgets.menu_button import MenuButton
+from widgets.buttons import MenuButton
 from functions.terminate import terminate
 from helpers import settings
 

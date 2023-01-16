@@ -2,7 +2,7 @@ import pygame
 
 from database import DataBase
 from functions.draw_attempts_count import draw_attempts_count
-from widgets.question_button import QuestionButton
+from widgets.buttons import QuestionButton
 from functions.terminate import terminate
 from helpers.settings import QUESSTION_BUTTONS_TEXT, FONT, QUESTION_BUTTON_INACTIVE_COLOR, QUESTION_BUTTON_ACTIVE_COLOR
 from helpers import settings
