@@ -118,6 +118,7 @@ class PlayerForPlatformer(pygame.sprite.Sprite):
         if self.cur_frame == 7:
             self.cur_frame = 0
 
+
         block_hit_list = pygame.sprite.spritecollide(self, spritres_groups.blocks, False)
         for block in block_hit_list:
             if self.change_x > 0:
