@@ -6,8 +6,8 @@ from sprites.all_sprites_groups import spritres_groups
 
 class PlayerForMaze(pygame.sprite.Sprite):
     def __init__(self, image, x, y, all_sprites):
-        self.right = True
         super().__init__(all_sprites)
+        self.right = True
         columns = 8
         rows = 1
         self.frames = []
@@ -73,7 +73,7 @@ class PlayerForMaze(pygame.sprite.Sprite):
 class PlayerForPlatformer(pygame.sprite.Sprite):
     def __init__(self, image, x, y, all_sprites):
         super().__init__(all_sprites)
-        self.right = False
+        self.right = True
         columns = 8
         rows = 1
         self.frames = []
@@ -104,13 +104,13 @@ class PlayerForPlatformer(pygame.sprite.Sprite):
                 self.change_x = 1
                 self.cur_frame += 1
                 self.image = self.frames[self.cur_frame]
-                if self.right:
+                if not self.right:
                     self.flip()
             if args[0] == pygame.K_a and self.rect.x > 0:
                 self.change_x = -1
                 self.cur_frame += 1
                 self.image = self.frames[self.cur_frame]
-                if not self.right:
+                if self.right:
                     self.flip()
 
         self.calculate_gravitation()
@@ -156,4 +156,4 @@ class PlayerForPlatformer(pygame.sprite.Sprite):
 
     def flip(self):
         self.image = pygame.transform.flip(self.image, True, False)
-        self.right = not self.right
+

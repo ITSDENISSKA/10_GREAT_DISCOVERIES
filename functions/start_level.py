@@ -38,6 +38,7 @@ def start_maze_level(screen, lvl_number, timer):
         player.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                database.close()
                 terminate()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
@@ -82,8 +83,12 @@ def start_platformer_level(screen, lvl_number, timer):
         player.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                database.close()
                 terminate()
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    database.close()
+                    terminate()
                 if event.key == pygame.K_SPACE:
                     settings.music_playing = not settings.music_playing
                     if settings.music_playing:
