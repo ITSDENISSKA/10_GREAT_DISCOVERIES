@@ -1,7 +1,7 @@
 import time
 
 import pygame
-from helpers.settings import FONT
+from helpers.settings import FONT, FONT_COLOR
 
 
 class Timer:
@@ -22,5 +22,5 @@ class Timer:
     def draw(self, screen, x, y, font_size):
         font_type = pygame.font.Font(FONT, font_size)
         text = font_type.render(f"Текущее время прохождения: {int(self.get_time()) // 60:02}:"
-                                f"{int(self.get_time()) % 60:02}", True, (0, 0, 0))
+                                f"{int(self.get_time()) % 60:02}", True, FONT_COLOR)
         screen.blit(text, (x, y))

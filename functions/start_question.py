@@ -4,7 +4,7 @@ from database import DataBase
 from functions.draw_attempts_count import draw_attempts_count
 from widgets.question_button import QuestionButton
 from functions.terminate import terminate
-from helpers.settings import QUESSTION_BUTTONS_TEXT, FONT
+from helpers.settings import QUESSTION_BUTTONS_TEXT, FONT, QUESTION_BUTTON_INACTIVE_COLOR, QUESTION_BUTTON_ACTIVE_COLOR
 from helpers import settings
 
 
@@ -26,9 +26,9 @@ def start_question(screen, lvl_number, click_sound, timer):
         menu_background = pygame.image.load(f"backgrounds/question{lvl_number}.png")
         screen.blit(menu_background, (0, 0))
 
-        true_btn = QuestionButton(400, 120, (255, 140, 0), (255, 215, 0), screen, True)
-        false1_btn = QuestionButton(400, 120, (255, 140, 0), (255, 215, 0), screen, False)
-        false2_btn = QuestionButton(400, 120, (255, 140, 0), (255, 215, 0), screen, False)
+        true_btn = QuestionButton(400, 120, QUESTION_BUTTON_INACTIVE_COLOR, QUESTION_BUTTON_ACTIVE_COLOR, screen, True)
+        false1_btn = QuestionButton(400, 120, QUESTION_BUTTON_INACTIVE_COLOR, QUESTION_BUTTON_ACTIVE_COLOR, screen, False)
+        false2_btn = QuestionButton(400, 120, QUESTION_BUTTON_INACTIVE_COLOR, QUESTION_BUTTON_ACTIVE_COLOR, screen, False)
         true_btn.draw(440, 280, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][0], 90)
         false1_btn.draw(100, 450, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][1], 90)
         false2_btn.draw(780, 450, QUESSTION_BUTTONS_TEXT[f"level{lvl_number}"][2], 90)

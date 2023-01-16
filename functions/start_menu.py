@@ -2,6 +2,8 @@ import pygame
 
 from database import DataBase
 from functions.start_statistic_window import start_statistic_window
+from helpers.settings import MENU_BUTTON_INACTIVE_COLOR, MENU_BUTTON_ACTIVE_COLOR, LINE_EDIT_INACTIVE_COLOR, \
+    LINE_EDIT_ACTIVE_COLOR
 from widgets.line_edit import LineEdit
 from widgets.menu_button import MenuButton
 from functions.terminate import terminate
@@ -11,12 +13,9 @@ from helpers import settings
 def start_menu(screen, timer):
     database = DataBase("database.sqlite")
 
-    color_inactive = pygame.Color('#A719A3')
-    color_active = pygame.Color('#FF0000')
-
-    start_btn = MenuButton(480, 145, (13, 162, 58), (23, 204, 50), screen)
-    statistic_btn = MenuButton(200, 50, (13, 162, 58), (23, 204, 50), screen)
-    line_edit = LineEdit(330, 40, color_inactive, color_active, screen)
+    start_btn = MenuButton(480, 145, MENU_BUTTON_INACTIVE_COLOR, MENU_BUTTON_ACTIVE_COLOR, screen)
+    statistic_btn = MenuButton(200, 50, MENU_BUTTON_INACTIVE_COLOR, MENU_BUTTON_ACTIVE_COLOR, screen)
+    line_edit = LineEdit(330, 40, LINE_EDIT_INACTIVE_COLOR, LINE_EDIT_ACTIVE_COLOR, screen)
 
     menu_background = pygame.image.load("backgrounds/background.png")
     while settings.menu:
@@ -47,7 +46,7 @@ def start_menu(screen, timer):
         if statistic_btn.clicked:
             settings.statistic_window = True
             start_statistic_window(screen)
-            statistic_btn = MenuButton(200, 50, (13, 162, 58), (23, 204, 50), screen)
+            statistic_btn = MenuButton(200, 50, MENU_BUTTON_INACTIVE_COLOR, MENU_BUTTON_ACTIVE_COLOR, screen)
 
         pygame.display.update()
 
