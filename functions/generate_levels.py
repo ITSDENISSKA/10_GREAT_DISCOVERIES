@@ -20,7 +20,7 @@ def generate_maze_level(level, level_number):
                 road.Road(load_image(f'lvl{level_number}/road.png'), x, y, roads, all_sprites)
                 px, py = x, y
 
-    new_player = players.PlayerForMaze(load_image(f'lvl{level_number}/player.png'), px, py, all_sprites)
+    new_player = players.PlayerForMaze(load_image(f'animated sprites.png'), px, py, all_sprites)
     return new_player, x, y
 
 
@@ -36,5 +36,5 @@ def generate_platformer_level(level, level_number):
             elif level[y][x] == '@':
                 px, py = x, y
 
-    new_player = players.PlayerForPlatformer(load_image(f'lvl{level_number}/player.png'), px, py, all_sprites)
+    new_player = players.PlayerForPlatformer(load_image(f'animated sprites.png'), px, py, all_sprites)
     return new_player, x, y, load_image("background.png")

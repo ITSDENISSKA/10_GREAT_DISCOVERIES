@@ -27,6 +27,15 @@ def start_maze_level(screen, lvl_number, timer):
     player, px, py = generate_maze_level(load_level(f"data/lvl{lvl_number}/level{lvl_number}.txt"), lvl_number)
 
     while settings.level:
+        if pygame.key.get_pressed()[pygame.K_a]:
+            player.update(pygame.K_a, (0, 0, 1, 0))
+        if pygame.key.get_pressed()[pygame.K_d]:
+            player.update(pygame.K_d, (0, 0, 0, 1))
+        if pygame.key.get_pressed()[pygame.K_w]:
+            player.update(pygame.K_w, (1, 0, 0, 0))
+        if pygame.key.get_pressed()[pygame.K_s]:
+            player.update(pygame.K_s, (0, 1, 0, 0))
+        player.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 terminate()
@@ -64,9 +73,12 @@ def start_platformer_level(screen, lvl_number, timer):
     database.update_time_by_nickname(settings.players_name, timer.get_time())
     player, px, py, background = generate_platformer_level(load_level(f"data/lvl{lvl_number}/level{lvl_number}.txt"),
                                                            lvl_number)
-
     while settings.level:
         screen.blit(background, (0, 0))
+        if pygame.key.get_pressed()[pygame.K_a]:
+            player.update(pygame.K_a)
+        if pygame.key.get_pressed()[pygame.K_d]:
+            player.update(pygame.K_d)
         player.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
