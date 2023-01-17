@@ -5,7 +5,7 @@ from pygame.display import Info
 menu = True
 music_playing = True
 
-lvl_number = 1
+lvl_number = 9
 count_of_incorrect_answers = 0
 game = True
 level = False

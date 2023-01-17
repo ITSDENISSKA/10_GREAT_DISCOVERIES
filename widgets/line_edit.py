@@ -25,13 +25,10 @@ class LineEdit:
         text = font_type.render(self.text, True, FONT_COLOR)
         font = pygame.font.Font(None, 50)
 
-        if self.active:
-            pygame.draw.rect(self.screen, self.active_color, (x, y, self.width, self.height), 2)
-            self.text_surface = font.render(self.text, True, self.active_color)
+        self.color = self.active_color if self.active else self.inactive_color
 
-        else:
-            pygame.draw.rect(self.screen, self.inactive_color, (x, y, self.width, self.height), 2)
-            self.text_surface = font.render(self.text, True, self.inactive_color)
+        pygame.draw.rect(self.screen, self.color, (x, y, self.width, self.height), 2)
+        self.text_surface = font.render(self.text, True, self.color)
 
         self.screen.blit(text, (x, y))
 
