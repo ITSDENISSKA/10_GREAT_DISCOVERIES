@@ -66,7 +66,8 @@ class DataBase:
     def get_statistic(self):
         try:
             statistic = self.cursor.execute(
-                "SELECT nickname, time, count_of_incorrect_answers, passed FROM users ORDER BY time ASC").fetchall()
+                "SELECT nickname, time, count_of_incorrect_answers, passed FROM users "
+                "ORDER BY passed DESC, time").fetchall()
             return statistic
         except sqlite3.Error as error:
             return error
@@ -82,7 +83,7 @@ class DataBase:
 
     def set_passed_game_by_nickname(self, nickname):
         try:
-            self.cursor.execute("UPDATE users SET passed = 1 WHERE nickname = ?", (nickname,))
+            self.cursor.execute("UPDATE users SET passed = ? WHERE nickname = ?", (1, nickname))
             self.connection.commit()
         except sqlite3.Error as error:
             return error
